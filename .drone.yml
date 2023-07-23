@@ -4,9 +4,10 @@ type: docker
 
 steps:
   - name: build
-    image: tianon/latex
+    image: texlive/texlive:latest
     commands:
-      - pdflatex resume.tex
+      - apt-get update && apt-get -y install inkscape python3-pygments
+      - latexmk -shell-escape -pdf resume.tex
   - name: publish
     image: plugins/github-release
     environment:
