@@ -14,11 +14,8 @@ steps:
       api_key:
         from_secret: github_token
       files: resume.pdf
-    when:
-      event: 
-        - tag
 trigger:
   branch:
     - SoftwareEngineer
   event:
-    - push
+    - tag
