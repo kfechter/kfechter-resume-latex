@@ -15,7 +15,8 @@ steps:
         from_secret: github_token
       files: resume.pdf
     when:
-      event: tag
+      event: 
+        - tag
 trigger:
   branch:
     - SoftwareEngineer
