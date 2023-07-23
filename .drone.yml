@@ -9,14 +9,13 @@ steps:
       - apt-get update && apt-get -y install inkscape python3-pygments
       - latexmk -shell-escape -pdf resume.tex
   - name: publish
-    image: plugins/github-release
-    environment:
-      OAUTH_TOKEN:
-        
+    image: plugins/github-release        
     settings:
       api_key:
         from_secret: github_token
       files: resume.pdf
+    when:
+      event: tag
 trigger:
   branch:
     - SoftwareEngineer
