@@ -1,0 +1,23 @@
+kind: pipeline
+name: default
+type: docker
+
+steps:
+  - name: build
+    image: tianon/latex
+    commands:
+      - pdflatex resume.tex
+  - name: publish
+    image: plugins/github-release
+    environment:
+      OAUTH_TOKEN:
+        
+    settings:
+      api_key:
+        from_secret: github_token
+      files: resume.pdf
+trigger:
+  branch:
+    - SoftwareEngineer
+  event:
+    - push
